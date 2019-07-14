@@ -1,2 +1,2 @@
-# rust-react-examle
+# rust-react-example
 Rust with react backend
