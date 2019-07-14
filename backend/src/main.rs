@@ -14,8 +14,7 @@ use gotham::helpers::http::response::create_response;
 use gotham::middleware::state::StateMiddleware;
 use gotham::pipeline::single::single_pipeline;
 use gotham::pipeline::single_middleware;
-use gotham::router::Router;
-use gotham::state::{FromState, State, StateData};
+use gotham::state::{FromState, State};
 
 use hyper::{Body, Response, StatusCode};
 
@@ -46,24 +45,7 @@ impl RequestCounter {
     }
 }
 
-// impl IntoResponse for ApiData {
-//   fn into_response(self, state: &State) -> Response<Body> {
-//     create_response(
-//       state,
-//       StatusCode::OK,
-//       mime::APPLICATION_JSON,
-//       serde_json::to_string(&self).expect("serialized ApiData")
-//     )
-//   }
-// }
-
 fn get_apidata_handler(state: State) -> (State, Response<Body>) {
-  // let data = ApiData {
-  //   count: 5,
-  // };
-
-  // (state, data)
-
   let res = {
     let value = RequestCounter::borrow_from(&state).incr();
     let res = json!({
