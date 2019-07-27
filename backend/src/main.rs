@@ -1,4 +1,4 @@
-//! An example of serving static assets with Gotham.
+// Backend example for servering react
 
 extern crate gotham;
 #[macro_use]
@@ -77,7 +77,6 @@ pub fn main() {
 
     default += "/index.html";
     let router = build_router(chain, pipelines, |route| {        
-        //route.get("/").to_file(default);
         route.get("/*").to_dir(
             FileOptions::new(&path).build(),
         );
